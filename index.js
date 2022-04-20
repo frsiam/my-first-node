@@ -11,12 +11,16 @@ const users = [
     {id: 2, name: 'Kobori', email: 'Kobori@gmail.com', phone: "01239486754"},
     {id: 3, name: 'Nurani', email: 'Nurani@gmail.com', phone: "01239486754"},
     {id: 4, name: 'Bobita', email: 'Bobita@gmail.com', phone: "01239486754"},
-    {id: 5, name: 'Razzak', email: 'Razzak@gmail.com', phone: "01239486754"},
-    {id: 6, name: 'Ashraful', email: 'Ashraful@gmail.com', phone: "01239486754"},
-    {id: 7, name: 'pilot', email: 'pilot@gmail.com', phone: "01239486754"},
+    {id: 5, name: 'Razzak', email: 'Razzak@gmail.com', phone: "01239486754"}
 ]
 
 app.get('/users', (req, res) => {
+    if(req.query.name){
+        const search = req.query.name.toLowerCase();
+        const matched = users.filter(user => user.name.toLowerCase().includes(search))
+        res.send(matched);
+    }
+    console.log('query',req.query)
     res.send(users)
 })
 
@@ -29,7 +33,10 @@ app.get('/user/:id', (req, res) => {
 
 app.post('/user', (req, res) => {
     console.log('request',req.body);
-    res.send('Post method success')
+    const user = req.body;
+    user.id = users.length + 1;
+    users.push(user);
+    res.send(user)
 })
 
 app.listen(port, () => {
