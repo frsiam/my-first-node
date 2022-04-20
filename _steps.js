@@ -7,5 +7,11 @@
  * --------------------------
  *  For Express/node server
  * --------------------------
- * 5. 
+ * 1.  require express
+ * 2. create app variable
+ * 3. declare port 
+ * 4. set app.get('/')
+ * 5. listen to port
+ * 6. node index.js
+ * check your browser for localhost for the 5000 port
 */
