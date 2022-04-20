@@ -1,10 +1,11 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get('/ho', (req, res) => {
-    res.send('Hello My first node js app..!')
-})
+app.use(cors());
+app.use(express.json());
+
 const users = [
     {id: 1, name: 'Sabana', email: 'sabana@gmail.com', phone: "01239486754"},
     {id: 2, name: 'Kobori', email: 'Kobori@gmail.com', phone: "01239486754"},
@@ -24,6 +25,11 @@ app.get('/user/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const user = users.find(u => u.id === id);
     res.send(user);
+})
+
+app.post('/user', (req, res) => {
+    console.log('request',req.body);
+    res.send('Post method success')
 })
 
 app.listen(port, () => {
