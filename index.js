@@ -27,5 +27,5 @@ app.get('/user/:id', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Hello are you listening on port ${port}`)
+    console.log(`Hello are you listening me on port ${port}`)
 })  
